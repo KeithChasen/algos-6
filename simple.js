@@ -114,3 +114,35 @@ const twoSum = (arr, target) => {
 console.log(twoSum([2,7,11,15], 9))
 
 console.log(twoSum([1,3,7,9,2], 11))
+
+//First non repeating char
+const firstUniqChar = string => {
+    const aArr = string.split('');
+    const letters = {};
+
+    aArr.forEach((l, i) => {
+        if (l in letters) {
+            letters[l].push(i)
+        } else {
+            letters[l] = [i]
+        }
+    })
+
+    const values = Object.values(letters)
+        .filter(arr => arr.length === 1)
+        .map(i => i[0])
+
+    if (!values.length) {
+        return -1
+    }
+
+    return Math.min(...values);
+}
+
+console.log(firstUniqChar('leetcode'))
+console.log(firstUniqChar('loveleetcode'))
+console.log(firstUniqChar('aabb'))
+
+// assert(firstUniqChar('leetcode'), 0)
+// assert(firstUniqChar('loveleetcode'), 2)
+// assert(firstUniqChar('aabb'), -1)
